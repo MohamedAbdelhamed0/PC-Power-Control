@@ -32,10 +32,32 @@ Control your PC remotely with powerful features | Made with ❤️
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Windows 10/11, MacOS 10.15+, or Linux
-- Android 8.0+ or iOS 13.0+
+- Windows 10/11, MacOS (soon)
+- Android - ios(soon)
 - Local network connection
 
-### Installation
-1. **Desktop App**
-   
+---
+
+## 🌐 Local Network Only
+
+**PC Power Control** works exclusively within your **local network**, ensuring complete privacy. All communication between the mobile app and desktop app occurs locally via HTTP and WebSocket protocols, and **no data is transmitted to the global internet**.
+
+### Mobile Hotspot Support
+You can connect your mobile device and PC using your mobile hotspot. Simply enable the hotspot on your phone and connect your PC to it for seamless control without requiring a traditional Wi-Fi network.
+
+---
+
+## 🔧 Installation
+
+### 1. Desktop App
+- Download the latest release of the desktop app from the [Releases Page](https://github.com/MohamedAbdelhamed0/PC-Power-Control/releases).
+- Follow the instructions in the setup wizard to install the application.
+
+### 2. Mobile App
+- Get the mobile app from the Google Play Store or Apple App Store (Coming Soon).
+
+---
+
+## 📜 License
+
+MIT License
