@@ -38,4 +38,15 @@ Control your PC remotely with powerful features | Made with ❤️
 
 ### Installation
 1. **Desktop App**
-   
+   - Download the latest release of the desktop app from the [Releases Page](https://github.com/MohamedAbdelhamed0/PC-Power-Control/releases).
+   - Follow the instructions in the setup wizard to install the application.
+
+2. **Mobile App**
+   - Get the mobile app from the Google Play Store or Apple App Store (Coming Soon).
+
+---
+
+## 📜 License
+
+MIT License
+
