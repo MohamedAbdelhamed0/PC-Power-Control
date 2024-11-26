@@ -32,8 +32,8 @@ Control your PC remotely with powerful features | Made with ❤️
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Windows 10/11, MacOS 10.15+, or Linux
-- Android 8.0+ or iOS 13.0+
+- Windows 10/11, MacOS (soon)
+- Android - ios(soon)
 - Local network connection
 
 ---
