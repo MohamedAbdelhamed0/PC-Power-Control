@@ -1,70 +1,41 @@
-PC Power Control
-Control your PC remotely from your mobile device with advanced features for seamless interaction.
-Features
+<div align="center">
 
-🖱️ Mouse Control: Control your desktop mouse cursor remotely
-📱 Sensor Mouse Control (Beta): Use mobile device sensors for mouse control
-⌨️ Text Sender: Send text directly to your desktop
-📷 Scan and Send: Scan products and send data to your PC
-📂 File Sharing: Easy file transfer between mobile and PC
-🎤 Voice Recorder (Beta): Stream audio to your desktop
-📺 Overlay: Display stream overlay on desktop
-🎯 Premium Features: Ad-free experience with unlimited access
+# PC Power Control 🎮
 
-Installation
-Desktop App
+Control your PC remotely with powerful features | Made with ❤️
 
-Download the desktop application from the releases section
-Install the application on your PC
-Follow the setup instructions to establish connection
+[![GitHub Release](https://img.shields.io/github/v/release/MohamedAbdelhamed0/PC-Power-Control)](https://github.com/MohamedAbdelhamed0/PC-Power-Control/releases)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/MohamedAbdelhamed0/PC-Power-Control/total)](https://github.com/MohamedAbdelhamed0/PC-Power-Control/releases)
 
-Mobile App
+[Download App](https://github.com/MohamedAbdelhamed0/PC-Power-Control/releases) • [Report Bug](https://github.com/MohamedAbdelhamed0/PC-Power-Control/issues) • [Request Feature](https://github.com/MohamedAbdelhamed0/PC-Power-Control/issues)
 
-Download from your device's app store
-Connect to the same network as your desktop
-Follow pairing instructions
+![App Screenshot](assets/desktop_app.png)
 
-System Requirements
-Desktop
+</div>
 
-Windows (version requirements)
-MacOS (version requirements)
-Linux (supported distributions)
-Network connection
+---
 
-Mobile
+## ✨ Features
 
-Android (minimum version)
-iOS (minimum version)
-Network connection
+| Feature | Description |
+|---------|-------------|
+| 🖱️ Mouse Control | Control your desktop mouse cursor remotely from your mobile device |
+| 📱 Sensor Mouse | Use mobile device sensors for intuitive mouse control (Beta) |
+| ⌨️ Text Sender | Send text instantly to your desktop |
+| 📷 Scan & Send | Scan products and send data directly to your PC |
+| 📂 File Sharing | Seamless file transfer between devices |
+| 🎤 Voice Recorder | Stream audio to your desktop (Beta) |
+| 📺 Overlay | Custom stream overlay support |
+| 🎯 Premium | Ad-free experience with unlimited features |
 
-Usage
+## 🚀 Getting Started
 
-Install both desktop and mobile applications
-Ensure both devices are on the same network
-Launch desktop application
-Connect mobile app to desktop
-Start using features
+### Prerequisites
+- Windows 10/11, MacOS 10.15+, or Linux
+- Android 8.0+ or iOS 13.0+
+- Local network connection
 
-Security
-
-All connections are encrypted
-Local network communication only
-No data stored on external servers
-
-Contributing
-We welcome contributions! Please follow these steps:
-
-Fork the repository
-Create a feature branch
-Commit your changes
-Push to the branch
-Create a Pull Request
-
-License
-[Add your chosen license here]
-Contact
-
-GitHub: [Your GitHub profile]
-LinkedIn: [Your LinkedIn profile]
-Email: [Your contact email]
+### Installation
+1. **Desktop App**
+   
