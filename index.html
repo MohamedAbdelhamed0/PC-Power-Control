@@ -7,6 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Add AOS library for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <style>
         /* Reset and Fonts */
         * {
@@ -15,40 +18,231 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
+
         body {
-            background-color: #fff5e6;
-            color: #333;
-        }
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%);
+            background: linear-gradient(120deg, #2a0845, #6441A5);
             color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.05) 2%, transparent 2.5%),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 2%, transparent 2.5%);
+            background-size: 100px 100px;
+            animation: patternMove 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes patternMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        /* Enhanced Header */
+        header {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
             padding: 40px 20px;
             text-align: center;
             position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
+
         .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid #fff;
-            position: absolute;
-            top: 20px;
-            left: 20px;
+            width: 80px;  /* reduced from 100px */
+            height: 80px; /* reduced from 100px */
+            margin: 0 auto 15px;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
         }
+
         .avatar img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+
+        .avatar:hover img {
+            transform: scale(1.1);
+            border-color: rgba(255, 215, 0, 0.8);
         }
-        header p {
-            font-size: 1.2rem;
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); } /* reduced from -20px */
+        }
+
+        /* Enhanced Feature Cards */
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) rotateX(10deg) rotateY(10deg);
+            border-color: rgba(255,215,0,0.5);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .feature-card .img-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card img.error {
+            object-fit: contain;
+            padding: 20px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .feature-card .content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .feature-card:hover img {
+            transform: scale(1.1) translateZ(20px);
+        }
+
+        /* Placeholder for missing images */
+        .img-container::before {
+            content: '🖼️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .feature-card img:not(.error) + .img-container::before {
+            display: none;
+        }
+
+        /* Loading state */
+        .feature-card img.loading {
+            opacity: 0;
+        }
+
+        /* Image lazy loading animation */
+        @keyframes imageFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .feature-card img:not(.loading) {
+            animation: imageFadeIn 0.5s ease-in;
+        }
+
+        /* Enhanced Download Buttons */
+        .download-buttons a {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .download-buttons a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255,255,255,0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .download-buttons a:hover::before {
+            left: 100%;
+        }
+
+        /* Enhanced Coffee Section */
+        .coffee {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+        }
+
+        .coffee h2 {
+            color: #ffd700;
             margin-bottom: 20px;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
+
+        .coffee a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #1a1a1a;
+            font-weight: 600;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .coffee a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+            background: linear-gradient(135deg, #ffb347, #ffd700);
+        }
+
+        /* Add these new styles for smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Glowing effect for text */
+        h1, h2, h3 {
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
         /* Container */
         .container {
             max-width: 1200px;
@@ -169,32 +363,36 @@
         }
         /* Enhanced Coffee Section */
         .coffee {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
-            border: 2px solid #ffd700;
+            text-align: center;
             margin-top: 40px;
+            padding: 20px;
         }
+
         .coffee h2 {
             color: #ffd700;
             margin-bottom: 20px;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
+
         .coffee a {
-            background: #ffd700;
-            color: #1a1a1a;
-            font-weight: 600;
-            padding: 15px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #1a1a1a;
+            font-weight: 600;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
         }
+
         .coffee a:hover {
-            background: #fff;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+            background: linear-gradient(135deg, #ffb347, #ffd700);
         }
         /* Footer */
         footer {
@@ -250,45 +448,77 @@
     <!-- Features Section -->
     <section class="features">
         <!-- Feature Cards -->
-        <div class="feature-card">
-            <img src="assets/mouse_control.jpg" alt="Mouse Control">
-            <h3>🖱️ Mouse Control</h3>
-            <p>Control your desktop mouse cursor remotely from your mobile phone.</p>
+        <div class="feature-card" data-aos="fade-up">
+            <div class="img-container">
+                <img src="assets/mouse_control.jpg" alt="Mouse Control" loading="lazy">
+            </div>
+            <div class="content">
+                <h3>🖱️ Mouse Control</h3>
+                <p>Control your desktop mouse cursor remotely from your mobile phone.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <img src="assets/sensor_mouse.jpg" alt="Sensor Mouse Control">
-            <h3>📱 Sensor Mouse Control (Beta)</h3>
-            <p>Use mobile device sensors for mouse control.</p>
+        <div class="feature-card" data-aos="fade-up">
+            <div class="img-container">
+                <img src="assets/sensor_mouse.jpg" alt="Sensor Mouse Control" loading="lazy">
+            </div>
+            <div class="content">
+                <h3>📱 Sensor Mouse Control (Beta)</h3>
+                <p>Use mobile device sensors for mouse control.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <img src="assets/text_sender.jpg" alt="Text Sender">
-            <h3>⌨️ Text Sender</h3>
-            <p>Send text directly to your desktop.</p>
+        <div class="feature-card" data-aos="fade-up">
+            <div class="img-container">
+                <img src="assets/text_sender.jpg" alt="Text Sender" loading="lazy">
+            </div>
+            <div class="content">
+                <h3>⌨️ Text Sender</h3>
+                <p>Send text directly to your desktop.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <img src="assets/scan_send.jpg" alt="Scan and Send">
-            <h3>📷 Scan and Send</h3>
-            <p>Scan products and send data to your PC.</p>
+        <div class="feature-card" data-aos="fade-up">
+            <div class="img-container">
+                <img src="assets/scan_send.jpg" alt="Scan and Send" loading="lazy">
+            </div>
+            <div class="content">
+                <h3>📷 Scan and Send</h3>
+                <p>Scan products and send data to your PC.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <img src="assets/file_sharing.jpg" alt="File Sharing">
-            <h3>📂 File Sharing</h3>
-            <p>Easily transfer files between your mobile and PC.</p>
+        <div class="feature-card" data-aos="fade-up">
+            <div class="img-container">
+                <img src="assets/file_sharing.jpg" alt="File Sharing" loading="lazy">
+            </div>
+            <div class="content">
+                <h3>📂 File Sharing</h3>
+                <p>Easily transfer files between your mobile and PC.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <img src="assets/voice_recorder.jpg" alt="Voice Recorder">
-            <h3>🎤 Voice Recorder (Beta)</h3>
-            <p>Stream audio to your desktop.</p>
+        <div class="feature-card" data-aos="fade-up">
+            <div class="img-container">
+                <img src="assets/voice_recorder.jpg" alt="Voice Recorder" loading="lazy">
+            </div>
+            <div class="content">
+                <h3>🎤 Voice Recorder (Beta)</h3>
+                <p>Stream audio to your desktop.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <img src="assets/overlay.jpg" alt="Overlay">
-            <h3>📺 Overlay</h3>
-            <p>Display stream overlay on your desktop.</p>
+        <div class="feature-card" data-aos="fade-up">
+            <div class="img-container">
+                <img src="assets/overlay.jpg" alt="Overlay" loading="lazy">
+            </div>
+            <div class="content">
+                <h3>📺 Overlay</h3>
+                <p>Display stream overlay on your desktop.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <img src="assets/premium.jpg" alt="Premium Features">
-            <h3>🎯 Premium Features</h3>
-            <p>Ad-free experience with unlimited access.</p>
+        <div class="feature-card" data-aos="fade-up">
+            <div class="img-container">
+                <img src="assets/premium.jpg" alt="Premium Features" loading="lazy">
+            </div>
+            <div class="content">
+                <h3>🎯 Premium Features</h3>
+                <p>Ad-free experience with unlimited access.</p>
+            </div>
         </div>
     </section>
 
@@ -305,7 +535,7 @@
         </div>
     </section>
 
-    <!-- Modified Coffee Section -->
+    <!-- Updated Coffee Section -->
     <section class="coffee">
         <h2>☕ Buy Me a Coffee</h2>
         <a href="https://paypal.me/mohamedabdelhamed279">
@@ -329,6 +559,19 @@
 
 <!-- Add this script before closing body tag -->
 <script>
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+    });
+
+    // Add data-aos attributes to elements
+    document.querySelectorAll('.feature-card').forEach((card, index) => {
+        card.setAttribute('data-aos', 'fade-up');
+        card.setAttribute('data-aos-delay', index * 100);
+    });
+
     // Image Modal functionality
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
@@ -343,6 +586,42 @@
 
     modal.addEventListener('click', function() {
         modal.style.display = "none";
+    });
+
+    // Image error handling and loading states
+    document.querySelectorAll('.feature-card img').forEach(img => {
+        img.classList.add('loading');
+
+        img.onload = function() {
+            this.classList.remove('loading');
+        };
+
+        img.onerror = function() {
+            this.classList.add('error');
+            this.classList.remove('loading');
+            this.src = 'assets/placeholder.png'; // Fallback image
+        };
+    });
+
+    // Lazy loading with Intersection Observer
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target.querySelector('img');
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    delete img.dataset.src;
+                }
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        rootMargin: '50px 0px',
+        threshold: 0.1
+    });
+
+    document.querySelectorAll('.feature-card').forEach(card => {
+        imageObserver.observe(card);
     });
 </script>
 </body>
