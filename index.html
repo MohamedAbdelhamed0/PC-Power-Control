@@ -2,100 +2,348 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PC Power Control</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Reset and Fonts */
+        * {
             margin: 0;
             padding: 0;
-            background: #f4f4f9;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #fff5e6;
             color: #333;
-            line-height: 1.6;
         }
+        /* Header */
         header {
-            background: #4CAF50;
+            background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%);
             color: #fff;
-            padding: 10px 20px;
+            padding: 40px 20px;
             text-align: center;
+            position: relative;
         }
-        .container {
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #fff;
+            position: absolute;
+            top: 20px;
+            left: 20px;
         }
-        .features {
-            margin-bottom: 40px;
+        .avatar img {
+            width: 100%;
+            height: auto;
         }
-        .feature {
-            display: flex;
-            align-items: center;
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2rem;
             margin-bottom: 20px;
         }
-        .feature img {
-            width: 50px;
-            height: 50px;
-            margin-right: 20px;
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px;
         }
-        .feature h3 {
-            margin: 0;
-            font-size: 1.2rem;
-        }
-        .feature p {
-            margin: 5px 0 0;
-        }
-        footer {
+        /* Desktop App Section */
+        .desktop-app-section {
             text-align: center;
-            margin-top: 50px;
-            font-size: 0.9rem;
+            margin-bottom: 60px;
+        }
+        .desktop-app-section img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        .desktop-app-section h3 {
+            font-size: 2rem;
+            margin: 20px 0 10px;
+        }
+        .desktop-app-section p {
+            font-size: 1.2rem;
             color: #555;
         }
-        a {
-            color: #4CAF50;
-            text-decoration: none;
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
-        a:hover {
+        .feature-card {
+            background: #1a1a1a;
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(255, 215, 0, 0.2);
+            overflow: hidden;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            color: #fff;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+            border-color: #fff;
+        }
+        .feature-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .feature-card:hover img {
+            transform: scale(1.1);
+        }
+        .feature-card h3 {
+            color: #ffd700;
+            margin: 20px 0 10px;
+        }
+        .feature-card p {
+            color: #cccccc;
+        }
+        /* Full-size Image Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            cursor: pointer;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 90vh;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 3px solid #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        /* Downloads Section */
+        .downloads {
+            margin-top: 60px;
+            text-align: center;
+        }
+        .downloads h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .download-buttons a {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            background: #667eea;
+            color: #fff;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background 0.3s;
+            position: relative;
+        }
+        .download-buttons a:hover {
+            background: #764ba2;
+        }
+        .download-buttons a img {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        /* Enhanced Coffee Section */
+        .coffee {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+            margin-top: 40px;
+        }
+        .coffee h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        .coffee a {
+            background: #ffd700;
+            color: #1a1a1a;
+            font-weight: 600;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .coffee a:hover {
+            background: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        footer p {
+            margin-bottom: 10px;
+        }
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
             text-decoration: underline;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .downloads h2 {
+                font-size: 2rem;
+            }
+            .avatar {
+                position: static;
+                margin: 0 auto 20px;
+            }
         }
     </style>
 </head>
 <body>
 <header>
+    <div class="avatar">
+        <img src="assets/me.png" alt="Avatar">
+    </div>
     <h1>🌟 PC Power Control</h1>
     <p>Control your PC remotely from your mobile device with advanced features for seamless interaction.</p>
 </header>
 
 <div class="container">
+    <!-- Desktop App Section -->
+    <section class="desktop-app-section">
+        <img src="assets/desktop_app.png" alt="Desktop App">
+        <h3>🎯 Fast, Fun, Secure</h3>
+        <p>Enjoy PC Power Control.</p>
+    </section>
+
+    <!-- Features Section -->
     <section class="features">
-        <h2>🚀 Features</h2>
-        <div class="feature">
-            <h3>Mouse Control</h3>
+        <!-- Feature Cards -->
+        <div class="feature-card">
+            <img src="assets/mouse_control.jpg" alt="Mouse Control">
+            <h3>🖱️ Mouse Control</h3>
             <p>Control your desktop mouse cursor remotely from your mobile phone.</p>
         </div>
-        <div class="feature">
-            <h3>Sensor Mouse Control (Beta)</h3>
+        <div class="feature-card">
+            <img src="assets/sensor_mouse.jpg" alt="Sensor Mouse Control">
+            <h3>📱 Sensor Mouse Control (Beta)</h3>
             <p>Use mobile device sensors for mouse control.</p>
         </div>
-        <div class="feature">
-            <h3>Text Sender</h3>
+        <div class="feature-card">
+            <img src="assets/text_sender.jpg" alt="Text Sender">
+            <h3>⌨️ Text Sender</h3>
             <p>Send text directly to your desktop.</p>
         </div>
-        <div class="feature">
-            <h3>File Sharing</h3>
+        <div class="feature-card">
+            <img src="assets/scan_send.jpg" alt="Scan and Send">
+            <h3>📷 Scan and Send</h3>
+            <p>Scan products and send data to your PC.</p>
+        </div>
+        <div class="feature-card">
+            <img src="assets/file_sharing.jpg" alt="File Sharing">
+            <h3>📂 File Sharing</h3>
             <p>Easily transfer files between your mobile and PC.</p>
+        </div>
+        <div class="feature-card">
+            <img src="assets/voice_recorder.jpg" alt="Voice Recorder">
+            <h3>🎤 Voice Recorder (Beta)</h3>
+            <p>Stream audio to your desktop.</p>
+        </div>
+        <div class="feature-card">
+            <img src="assets/overlay.jpg" alt="Overlay">
+            <h3>📺 Overlay</h3>
+            <p>Display stream overlay on your desktop.</p>
+        </div>
+        <div class="feature-card">
+            <img src="assets/premium.jpg" alt="Premium Features">
+            <h3>🎯 Premium Features</h3>
+            <p>Ad-free experience with unlimited access.</p>
         </div>
     </section>
 
+    <!-- Downloads Section -->
     <section class="downloads">
         <h2>📥 Downloads</h2>
-        <p><strong>Mobile App:</strong> <a href="#">Download from Google Play Store</a></p>
-        <p><strong>Desktop App:</strong> <a href="https://github.com/MohamedAbdelhamed0/PC-Power-Control/releases">Download from GitHub Releases</a></p>
+        <div class="download-buttons">
+            <a href="#">
+                <img src="assets/icon.webp" alt="Mobile Icon"> Download from Google Play Store
+            </a>
+            <a href="https://github.com/MohamedAbdelhamed0/PC-Power-Control/releases">
+                <img src="assets/me.png" alt="PC Icon"> Download Desktop App
+            </a>
+        </div>
+    </section>
+
+    <!-- Modified Coffee Section -->
+    <section class="coffee">
+        <h2>☕ Buy Me a Coffee</h2>
+        <a href="https://paypal.me/mohamedabdelhamed279">
+            ☕ Buy me a coffee on PayPal
+        </a>
     </section>
 </div>
 
 <footer>
     <p>Made with ❤️ by Mohamed | <a href="mailto:your-email@example.com">Contact Me</a></p>
-    <p>💼 <a href="https://linkedin.com/in/mohamed-abdelhamed-dev">LinkedIn</a> | 🐙 <a href="https://github.com/MohamedAbdelhamed0">GitHub</a></p>
+    <p>
+        💼 <a href="https://linkedin.com/in/mohamed-abdelhamed-dev">LinkedIn</a> |
+        🐙 <a href="https://github.com/MohamedAbdelhamed0">GitHub</a>
+    </p>
 </footer>
+
+<!-- Add this div at the end of body for the modal -->
+<div class="modal" id="imageModal">
+    <img id="modalImage">
+</div>
+
+<!-- Add this script before closing body tag -->
+<script>
+    // Image Modal functionality
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const featureImages = document.querySelectorAll('.feature-card img');
+
+    featureImages.forEach(img => {
+        img.addEventListener('click', function() {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        });
+    });
+
+    modal.addEventListener('click', function() {
+        modal.style.display = "none";
+    });
+</script>
 </body>
 </html>
